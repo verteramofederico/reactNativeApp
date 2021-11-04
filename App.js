@@ -9,7 +9,6 @@ import {
 import HeaderComponent from './components/HeaderComponent'
 import List from './components/List'
 import React from 'react';
-import TabMenu from './components/TabMenu'
 
 export default function App() {
   return (
@@ -17,7 +16,6 @@ export default function App() {
       <HeaderComponent/>
       <List type={"Incomes"}/>
       <List type={"Expenses"}/>
-      <TabMenu/>
     </View>
   );
 }
