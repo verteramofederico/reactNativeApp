@@ -4,6 +4,7 @@ import {
   Text,
   TextInput,
   View,
+  Alert
 } from 'react-native'
 import React, { useState } from 'react';
 
@@ -13,7 +14,7 @@ import List from './components/List'
 import { useFonts } from 'expo-font'
 
 export default function App() {
-  const [conditionalView, setConditionalView] = useState("");
+  const [conditionalView, setConditionalView] = useState  ('')
   const [loaded] = useFonts({
     OpenSans: require('./assets/fonts/OpenSans-Regular.ttf'),
     OpenSansBold: require('./assets/fonts/OpenSans-Bold.ttf')
@@ -21,13 +22,14 @@ export default function App() {
 
   if (!loaded) return <AppLoading/>
 
-  const handleOption = (string) => {
-    if (string === "AddIncome") {
-      setConditionalView("AddIncome")
-    }
-    if (string === "AddExpense") {
-      setConditionalView("AddExpense")
-    }
+  const handleAddIncome = () => {
+    setConditionalView('AddIncome')
+  }
+  const handleAddExpense = () => {
+    setConditionalView('AddExpense')
+  }
+  const handleExitAdd = () => {
+    setConditionalView('')
   }
   
   return (
@@ -36,13 +38,15 @@ export default function App() {
       
       <View>
       <Text>Add income</Text>
-      <Button title="AddIncome" onPress={handleOption("AddIncome")} />
+      <Button onPress={handleAddIncome} title="AddIncome"/>
       <Text>Add expense</Text>
-      <Button title="AddExpense" onPress={handleOption("AddExpense")} />
+      <Button onPress={handleAddExpense} title="AddExpense"/>
       </View>
       
       {conditionalView === "AddIncome" ? <List type={"Incomes"}/> : null }
-      {conditionalView === "AddExpense" ? <List type={"Expenses"}/> : null }      
+      {conditionalView === "AddExpense" ? <List type={"Expenses"}/> : null }
+      {conditionalView === "AddExpense" ? <Button onPress={handleExitAdd} title="ExitAdd"/> : null }
+      {conditionalView === "AddIncome" ? <Button onPress={handleExitAdd} title="Exit Adding"/> : null }   
     </View>
   );
 }
