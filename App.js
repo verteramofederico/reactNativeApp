@@ -7,6 +7,7 @@ import {
   Alert
 } from 'react-native'
 import React, { useState } from 'react';
+import AppNavigator from './navigation/AppNagivator'
 
 import AppLoading from 'expo-app-loading'
 import HeaderComponent from './components/HeaderComponent'
@@ -35,7 +36,7 @@ export default function App() {
   return (
     <View style={styles.screen}>
       <HeaderComponent/>
-      
+      <AppNavigator/>
       <View>
       <Text>Add income</Text>
       <Button onPress={handleAddIncome} title="AddIncome"/>
